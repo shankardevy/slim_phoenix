@@ -10,15 +10,11 @@ defmodule SlimPhoenix.Application do
     # Proper way of starting the cowboy server will be explored later in the book.
     # For now, this helps to understand the basic concepts.
     dispatch_config = :cowboy_router.compile([
-      { :_,
-        [
-          {"/", SlimPhoenix.CowboyHandler, [:home]},
-          {"/about", SlimPhoenix.CowboyHandler, [:about]},
-          {"/contact", SlimPhoenix.CowboyHandler, [:contact]},
-          {:_, SlimPhoenix.CowboyHandler, [404]}
-        ]
+      { :_,  # Match any host
+        [{ :_, SlimPhoenix.CowboyHandler, [SlimPhoenix.Router] }] # Map all path to CowboyHandler
       }
     ])
+
     :cowboy.start_http(:http, 100,[{:port, 8080}],[{ :env, [{:dispatch, dispatch_config}]}])
 
     children = []

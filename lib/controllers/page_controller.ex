@@ -1,27 +1,28 @@
 defmodule SlimPhoenix.PageController do
-  import SlimPhoenix.Conn, only: [put_res_body: 2, put_res_code: 2]
+  import SlimPhoenix.Conn, only: [put_res_code: 2]
+  import SlimPhoenix.PageView
 
   def home(conn) do
     conn
     |> put_res_code(200)
-    |> put_res_body("<h1>Home Page</h1>")
+    |> render("home.html")
   end
 
   def about(conn) do
     conn
     |> put_res_code(200)
-    |> put_res_body("<h1>About Page</h1>")
+    |> render("about.html")
   end
 
   def contact(conn) do
     conn
     |> put_res_code(200)
-    |> put_res_body("<h1>Contact Page</h1>")
+    |> render("contact.html")
   end
 
   def page_not_found(conn) do
     conn
     |> put_res_code(404)
-    |> put_res_body("<h1>404 error</h1>")
+    |> render("404.html")
   end
 end

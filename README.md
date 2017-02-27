@@ -1,19 +1,21 @@
-# SlimPhoenix
+# Slim Phoenix
 
-**TODO: Add description**
+A minimal rebuild of Phoenix to demonstrate various components of Phoenix, Plug, Cowboy.
 
-## Installation
+The code in this repo is part of my upcoming book on Phoenix. It incrementally builds a simple Phoenix replica starting from using a plain cowboy integration and then building a router, controller, view and template on top of it one at a time.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `slim_phoenix` to your list of dependencies in `mix.exs`:
+If you are curious and can't wait till the book the release, go clone the repo and run it locally. Checkout the repo to the initial commit and look for the changes with each new commit.
 
-```elixir
-def deps do
-  [{:slim_phoenix, "~> 0.1.0"}]
-end
-```
+## How to Run locally
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/slim_phoenix](https://hexdocs.pm/slim_phoenix).
+* Clone this project locally.
+* From inside the project directory, run `mix do deps.get` to get dependencies.
+* Visit [http://localhost:8080](http://localhost:8080)
+  * '/' render "lib/templates/home.html.eex"
+  * '/contact' render "lib/templates/contact.html.eex"
+  * '/about' render "lib/templates/about.html.eex"
+  * any other path renders "lib/templates/404.html.eex"
 
+## Subscribe
+
+To get notified when the book is released, please subscribe at [http://shankardevy.github.io/phoenix-book/](http://shankardevy.github.io/phoenix-book/)

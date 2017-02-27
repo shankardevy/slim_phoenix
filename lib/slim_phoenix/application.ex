@@ -12,7 +12,10 @@ defmodule SlimPhoenix.Application do
     dispatch_config = :cowboy_router.compile([
       { :_,
         [
-          {:_, SlimPhoenix.CowboyHandler, []},
+          {"/", SlimPhoenix.CowboyHandler, [:home]},
+          {"/about", SlimPhoenix.CowboyHandler, [:about]},
+          {"/contact", SlimPhoenix.CowboyHandler, [:contact]},
+          {:_, SlimPhoenix.CowboyHandler, [404]}
         ]
       }
     ])

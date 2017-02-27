@@ -4,10 +4,18 @@ defmodule SlimPhoenix.CowboyHandler do
   end
 
   def handle(request, opts) do
-    [router|_] = opts
+    [ router | _ ] = opts
+    { path, request } = :cowboy_req.path request
+    conn = %SlimPhoenix.Conn{req_path: path}
+    conn = router.call(conn)
+
     { :ok, reply } = :cowboy_req.reply(
-      200, [{"content-type", "text/html"}], router.call(request), request
-    )
+                      conn.res_code,
+                      [{"content-type", "text/html"}],
+                      conn.res_body,
+                      request
+                    )
+
     {:ok, reply, opts}
   end
 

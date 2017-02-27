@@ -1,11 +1,10 @@
 defmodule SlimPhoenix.PageController do
-  import SlimPhoenix.Conn, only: [put_res_code: 2]
-  import SlimPhoenix.PageView
+  import SlimPhoenix.Conn, only: [put_res_code: 2, put_res_body: 2]
 
   def home(conn) do
     conn
     |> put_res_code(200)
-    |> render("home.html")
+    |> render("home.html", name: "Shankardevy")
   end
 
   def about(conn) do
@@ -25,4 +24,11 @@ defmodule SlimPhoenix.PageController do
     |> put_res_code(404)
     |> render("404.html")
   end
+
+  defp render(conn, template, assigns \\ []) do
+    data = SlimPhoenix.PageView.render(template, assigns)
+    conn
+    |> put_res_body(data)
+  end
+
 end
